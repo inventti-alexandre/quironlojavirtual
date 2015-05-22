@@ -10,13 +10,17 @@ namespace Quiron.LojaVirtual.Web.Controllers
     public class VitrineController : Controller
     {
         private ProdutoRespositorio _repositorio;
+        private int produtosPorPagina = 3;
 
         // GET: Vitrine
-        public ActionResult Index()
+        public ActionResult ListaProdutos(int pagina = 1)
         {
             _repositorio = new ProdutoRespositorio();
-            var produtos = _repositorio.Produtos;
-            return View();
+            var produtos = _repositorio.Produtos
+                .Skip((pagina - 1) * produtosPorPagina)
+                .Take(produtosPorPagina);                
+
+            return View(produtos);
         }
     }
 }
