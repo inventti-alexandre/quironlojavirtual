@@ -13,7 +13,7 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
 
         public IEnumerable<Produto> Produtos
         {
-            get { return _context.Produtos; }
+            get { return _context.Produto; }
         }
     }
 }
