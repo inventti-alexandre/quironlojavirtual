@@ -71,7 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entidades\" />
+    <Folder Include="Entidade\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
