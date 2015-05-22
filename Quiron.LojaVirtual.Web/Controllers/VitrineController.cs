@@ -7,16 +7,16 @@ using Quiron.LojaVirtual.Dominio.Repositorio;
 
 namespace Quiron.LojaVirtual.Web.Controllers
 {
-    public class ProdutosController : Controller
+    public class VitrineController : Controller
     {
         private ProdutoRespositorio _repositorio;
 
-        // GET: Produtos
+        // GET: Vitrine
         public ActionResult Index()
         {
             _repositorio = new ProdutoRespositorio();
-            var produtos = _repositorio.Produtos.Take(10);
-            return View(produtos);
+            var produtos = _repositorio.Produtos;
+            return View();
         }
     }
 }
