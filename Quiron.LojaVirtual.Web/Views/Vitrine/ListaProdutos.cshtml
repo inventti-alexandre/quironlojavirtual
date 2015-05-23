@@ -1,4 +1,5 @@
-﻿@model Quiron.LojaVirtual.Web.Models.ProdutosViewModel
+﻿@using Quiron.LojaVirtual.Web.HmtlHelpers
+@model Quiron.LojaVirtual.Web.Models.ProdutosViewModel
 
 @foreach (var p in Model.Produtos)   
 {
@@ -8,3 +9,5 @@
         <h3>@p.Preco.ToString("c")</h3>
     </div>
 }
+
+@Html.PageLinks(Model.Paginacao, x => Url.Action("ListaProdutos", new { pagina = x }))
