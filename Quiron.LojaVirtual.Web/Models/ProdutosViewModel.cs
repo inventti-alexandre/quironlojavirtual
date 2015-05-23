@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Quiron.LojaVirtual.Dominio.Entidade;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Linq;
-using Quiron.LojaVirtual.Dominio.Entidade;
 
 namespace Quiron.LojaVirtual.Web.Models
 {
