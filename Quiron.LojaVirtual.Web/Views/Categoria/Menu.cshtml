@@ -1,0 +1,23 @@
+﻿@model System.Collections.Generic.IEnumerable<string>           
+
+@Html.ActionLink("TODOS OS PRODUTOS", "ListaProdutos", "Vitrine", null, new { @class = "btn btn-block btn-default btn-lg" })
+
+@foreach (var item in Model)
+{
+    @Html.RouteLink(item, new
+    {
+        controller = "Vitrine",
+        action = "ListaProdutos",
+        categoria = item,
+        pagina = 1
+    }, new
+    {
+        @class = "btn btn-block btn-default btn-lg" + (item == ViewBag.CategoriaSelecionada ? " btn-primary" : "")
+    }
+    )
+}
+
+@*@foreach (var item in Model)
+{
+    @Html.ActionLink(item, "ListaProdutos", "Vitrine", new { categoria = item, pagina = 1 }, new { @class = "btn btn-block btn-default btn-lg" })
+}*@
