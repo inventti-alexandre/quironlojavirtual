@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quiron.LojaVirtual.Dominio.Entidade;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Quiron.LojaVirtual.UnitTest
@@ -13,25 +12,25 @@ namespace Quiron.LojaVirtual.UnitTest
         public void AdicionarItensAoCarrinho()
         {
             // Arrange - criacao dos produtos
-            Produto produto1 = new Produto
+            var produto1 = new Produto
             {
                 ProdutoId = 1,
                 Nome = "Teste 1",
             };
 
-            Produto produto2 = new Produto
+            var produto2 = new Produto
             {
                 ProdutoId = 2,
                 Nome = "Teste 2",
             };
 
             // Arrange - adiciona itens ao carrinho
-            Carrinho carrinho = new Carrinho();
+            var carrinho = new Carrinho();
             carrinho.AdicionarItem(produto1, 2);
             carrinho.AdicionarItem(produto2, 3);
 
             // Act - retorna lista adicionada ao carrinho
-            ItemCarrinho[] itens = carrinho.ItensCarrinho.ToArray();
+            var itens = carrinho.ItensCarrinho.ToArray();
 
             // Assert - compara itens adicionados ao retorno da lista
             Assert.AreEqual(itens.Length, 2);
@@ -43,26 +42,26 @@ namespace Quiron.LojaVirtual.UnitTest
         public void AdicionarProdutoExistenteAoCarrinho()
         {
             // Arrange - criacao dos produtos
-            Produto produto1 = new Produto
+            var produto1 = new Produto
             {
                 ProdutoId = 1,
                 Nome = "Teste 1",
             };
 
-            Produto produto2 = new Produto
+            var produto2 = new Produto
             {
                 ProdutoId = 2,
                 Nome = "Teste 2",
             };
 
             // Arrange - adiciona itens ao carrinho
-            Carrinho carrinho = new Carrinho();
+            var carrinho = new Carrinho();
             carrinho.AdicionarItem(produto1, 1);
             carrinho.AdicionarItem(produto2, 1);
             carrinho.AdicionarItem(produto1, 10);
 
             // Act
-            ItemCarrinho[] resultado = carrinho.ItensCarrinho.OrderBy(c => c.Produto.ProdutoId).ToArray();
+            var resultado = carrinho.ItensCarrinho.OrderBy(c => c.Produto.ProdutoId).ToArray();
 
             // Assert
             Assert.AreEqual(resultado.Length, 2);
@@ -74,26 +73,26 @@ namespace Quiron.LojaVirtual.UnitTest
         public void RemoverItensCarrinho()
         {
             // Arrange - criacao dos produtos
-            Produto produto1 = new Produto
+            var produto1 = new Produto
             {
                 ProdutoId = 1,
                 Nome = "Teste 1",
             };
 
-            Produto produto2 = new Produto
+            var produto2 = new Produto
             {
                 ProdutoId = 2,
                 Nome = "Teste 2",
             };
 
-            Produto produto3 = new Produto
+            var produto3 = new Produto
             {
                 ProdutoId = 3,
                 Nome = "Teste 3",
             };
 
             // Arrange - adiciona itens ao carrinho
-            Carrinho carrinho = new Carrinho();
+            var carrinho = new Carrinho();
             carrinho.AdicionarItem(produto1, 1);
             carrinho.AdicionarItem(produto2, 3);
             carrinho.AdicionarItem(produto3, 5);
@@ -103,7 +102,7 @@ namespace Quiron.LojaVirtual.UnitTest
             carrinho.RemoverItem(produto2);
 
             // Assert
-            Assert.AreEqual(carrinho.ItensCarrinho.Where(c => c.Produto == produto2).Count(), 0);
+            Assert.AreEqual(carrinho.ItensCarrinho.Count(c => c.Produto == produto2), 0);
             Assert.AreEqual(carrinho.ItensCarrinho.Count(), 2);
         }
 
@@ -111,27 +110,27 @@ namespace Quiron.LojaVirtual.UnitTest
         public void CalcularValorTotal()
         {
             // Arrange - criacao dos produtos
-            Produto produto1 = new Produto
+            var produto1 = new Produto
             {
                 ProdutoId = 1,
                 Nome = "Teste 1",
                 Preco = 100M
             };
 
-            Produto produto2 = new Produto
+            var produto2 = new Produto
             {
                 ProdutoId = 2,
                 Nome = "Teste 2",
                 Preco = 50M
             };
 
-            Carrinho carrinho = new Carrinho();
+            var carrinho = new Carrinho();
             carrinho.AdicionarItem(produto1, 1);
             carrinho.AdicionarItem(produto2, 1);
             carrinho.AdicionarItem(produto1, 3);
 
             // Act
-            decimal resultado = carrinho.ObterValorTotal();
+            var resultado = carrinho.ObterValorTotal();
 
             // Assert
             Assert.AreEqual(resultado, 450);
@@ -141,28 +140,29 @@ namespace Quiron.LojaVirtual.UnitTest
         public void LimparItensCarrinho()
         {
             // Arrange - criacao dos produtos
-            Produto produto1 = new Produto
+            var produto1 = new Produto
             {
                 ProdutoId = 1,
                 Nome = "Teste 1",
                 Preco = 100M
             };
 
-            Produto produto2 = new Produto
+            var produto2 = new Produto
             {
                 ProdutoId = 2,
                 Nome = "Teste 2",
                 Preco = 50M
             };
 
-            Carrinho carrinho = new Carrinho();
+            // Arrange - adiciona itens ao carrinho
+            var carrinho = new Carrinho();
             carrinho.AdicionarItem(produto1, 1);
             carrinho.AdicionarItem(produto2, 1);
 
-            // Act
+            // Act - limpa o carrinho
             carrinho.LimparCarrinho();
 
-            // Assert
+            // Assert - verifica se o carrinho foi limpo
             Assert.AreEqual(carrinho.ItensCarrinho.Count, 0);
         }
     }
