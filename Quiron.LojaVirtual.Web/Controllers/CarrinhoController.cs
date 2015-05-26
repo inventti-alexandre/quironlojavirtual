@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Quiron.LojaVirtual.Dominio.Entidade;
 using Quiron.LojaVirtual.Dominio.Repositorio;
+using Quiron.LojaVirtual.Web.Models;
 
 namespace Quiron.LojaVirtual.Web.Controllers
 {
@@ -23,12 +24,12 @@ namespace Quiron.LojaVirtual.Web.Controllers
                 ObterCarrinho().AdicionarItem(produto, 1);
             }
 
-            return RedirectToAction("Index", new {returnUrl});
+            return RedirectToAction("Index", new { returnUrl });
         }
 
         private Carrinho ObterCarrinho()
         {
-            var carrinho = (Carrinho) Session["Carrinho"];
+            var carrinho = (Carrinho)Session["Carrinho"];
             if (carrinho == null)
             {
                 carrinho = new Carrinho();
@@ -48,7 +49,16 @@ namespace Quiron.LojaVirtual.Web.Controllers
                 ObterCarrinho().RemoverItem(produto);
             }
 
-            return RedirectToAction("Index", new {returnUrl});
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public ViewResult Index(string returnUrl)
+        {
+            return View(new CarrinhoViewModel
+            {
+                Carrinho = ObterCarrinho(),
+                ReturnUrl = returnUrl
+            });
         }
     }
 }
