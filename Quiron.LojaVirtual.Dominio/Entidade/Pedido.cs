@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Quiron.LojaVirtual.Dominio.Entidade
 {
@@ -41,6 +36,7 @@ namespace Quiron.LojaVirtual.Dominio.Entidade
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Display(Name="Embrulhar para presente")]
         public bool EmbrulhaPresente { get; set; }
     }
 }
