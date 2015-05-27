@@ -6,10 +6,11 @@
 }
 
 
-
 <div class="panel">
     <div class="panel-heading">
-        <h3>Alterar - @Model.Nome</h3>
+        <h3>
+            @Model.Nome @ViewBag.Operacao
+        </h3>
     </div>
 
     @Html.ValidationSummary()
@@ -39,7 +40,7 @@
                     }
                     @Html.ValidationMessage(property.PropertyName)
                 </div>
-            }                
+            }
             <input type="submit" value="Gravar" class="btn btn-primary" />
             @Html.ActionLink("Voltar a lista de produtos", "Index")
         </div>

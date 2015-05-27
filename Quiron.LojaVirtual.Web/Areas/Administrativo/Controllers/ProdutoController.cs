@@ -30,6 +30,7 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
             var produto = _repositorio.Produtos
                 .FirstOrDefault(x => x.ProdutoId == produtoId);
 
+            ViewBag.Operacao = "Alteração";
             return View(produto);
         }
 
@@ -46,7 +47,29 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Operacao = "Alteração";
             return View(produto);
+        }
+
+        public ViewResult NovoProduto()
+        {
+            ViewBag.Operacao = "Inclusão";
+            return View("Alterar", new Produto());
+        }
+
+        [HttpPost]
+        public ActionResult Excluir(int produtoId)
+        {
+            _repositorio = new ProdutoRespositorio();
+
+            var produto = _repositorio.Excluir(produtoId);
+
+            if (produto != null)
+            {
+                TempData["mensagem"] = string.Format("Produto {0} excluído", produto.Nome);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

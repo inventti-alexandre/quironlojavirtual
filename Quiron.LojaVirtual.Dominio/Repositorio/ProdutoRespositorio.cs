@@ -16,7 +16,7 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
             get { return _context.Produto; }
         }
 
-        // Gravar Produto
+        // Grava produto
         public void Salvar(Produto produto)
         {
             if (produto.ProdutoId == 0)
@@ -39,6 +39,20 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
 
             // grava
             _context.SaveChanges();
+        }
+
+        // Exclui produto
+        public Produto Excluir(int produtoId)
+        {
+            var produto = _context.Produto.Find(produtoId);
+
+            if (produto != null)
+            {
+                _context.Produto.Remove(produto);
+                _context.SaveChanges();
+            }
+
+            return produto;
         }
     }
 }
