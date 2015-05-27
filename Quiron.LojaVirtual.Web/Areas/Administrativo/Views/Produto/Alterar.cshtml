@@ -37,7 +37,7 @@
                     {
                         @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
                     }
-                    
+                    @Html.ValidationMessage(property.PropertyName)
                 </div>
             }                
             <input type="submit" value="Gravar" class="btn btn-primary" />

@@ -19,6 +19,7 @@ namespace Quiron.LojaVirtual.Dominio.Entidade
 
         [Display(Name="Preço produto:")]
         [Required(ErrorMessage="Informe o preço do produto")]
+        [Range(0.01,double.MaxValue,ErrorMessage="Valor do produto inválido")]
         [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
 
