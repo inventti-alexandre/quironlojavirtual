@@ -32,7 +32,7 @@
                     # @item.ProdutoId
                 </td>
                 <td>
-                    @Html.ActionLink(item.Nome, "Alterar", "Produto", new {item.ProdutoId})
+                    @Html.ActionLink(item.Nome, "Alterar", new { item.ProdutoId })
                 </td>
                 <td class="text-right">
                     @item.Preco.ToString("C2")
