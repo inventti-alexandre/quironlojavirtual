@@ -11,7 +11,7 @@
 
             <div class="modal-body">
                 <input type="hidden" />
-                <p>Deseja excluir o produto <em><strong>"<span></span>"</strong></em>&nbsp;?</p>
+                <p>Deseja excluir o produto <em><strong><span></span></strong></em>&nbsp;?</p>
             </div>
 
             <div class="modal-footer">
@@ -20,3 +20,55 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="text/javascript">
+
+    $(function () {
+
+        // abrir modal
+        $(".btn-xs").click(function (e) {
+            e.preventDefault();
+            var id = this.id;
+            var nome = this.name;
+
+            // atribui propriedades ao modal
+            $("#deleteModal .modal-body input[type=hidden]").val(id);
+            $("#deleteModal .modal-body span").text(nome);
+
+            // exibe o modal
+            $("#deleteModal").modal("show");
+        });
+
+        // confirma a exclusao
+        $("#deleteModal .modal-footer button").click(function (e) {
+            e.preventDefault();
+            var url = "Administrativo/Produto/Excluir";
+            var id = $(".modal-body input[type=hidden]").val();
+
+            // linha do grid
+            var rowNumber = "#row-" + id;
+            alert(rowNumber);
+
+            $.ajax({
+                url: url,
+                type: 'post',
+                datatype: 'json',
+                data: { produtoId: id },
+                beforeSend: function () {
+                    var loading = "<span><em>Excluindo</em>&nbsp;<i class='glyphicon glyphicon-refresh icon-refresh-animate'></span>";
+                    $('#deleteModal .modal-header h4').after(loading);
+                },
+                success: function () {
+                    $('#deleteModal').modal('hide');
+                    $(rowNumber).animate({ opacity: 0.0 }, 400, function () {
+                        $(rowNumber).remove();
+                    });
+                },
+                complete: function (data) {
+                    $("#mensagem").show();
+                    $("#mensagem").html(data.responseText);
+                }
+            });
+        });
+    });
+</script>
