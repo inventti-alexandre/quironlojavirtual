@@ -5,12 +5,43 @@
     Layout = "~/Areas/Administrativo/Views/Shared/_AdministrativoLayout.cshtml";
 }
 
-<h2>Alterar - @Model.Nome</h2>
 
-@using (Html.BeginForm("Produto", "Alterar"))
-{
-    @Html.EditorForModel()
-    
-    <input type="submit" value="Salvar" class="btn btn-primary"/>
-    @Html.ActionLink("Votar", "Index");
-}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Alterar - @Model.Nome</h3>
+    </div>
+
+    @Html.ValidationSummary()
+
+    @using (Html.BeginForm("Alterar", "Produto"))
+    {
+        <div class="panel-body">
+
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                <div class="form-group">
+                    <label>
+                        @(property.DisplayName ?? property.DisplayName)
+                    </label>
+
+                    @if (property.PropertyName == "Descricao")
+                    {
+                        @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 4 })
+                    }
+                    else if (property.PropertyName == "ProdutoId")
+                    {
+                        @Html.HiddenFor(x => x.ProdutoId)
+                    }
+                    else
+                    {
+                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                    }
+                    
+                </div>
+            }                
+            <input type="submit" value="Gravar" class="btn btn-primary" />
+            @Html.ActionLink("Voltar a lista de produtos", "Index")
+        </div>
+    }
+</div>

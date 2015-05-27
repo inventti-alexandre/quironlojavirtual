@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace Quiron.LojaVirtual.Dominio.Entidade
 {
@@ -12,12 +7,23 @@ namespace Quiron.LojaVirtual.Dominio.Entidade
     {
         [HiddenInput(DisplayValue=false)]
         public int ProdutoId { get; set; }
-        
+     
+        [Display(Name="Nome do produto:")]
+        [Required(ErrorMessage="Informe o nome do produto")]
         public string Nome { get; set; }
         
+        [Display(Name="Descrição:")]
+        [Required(ErrorMessage="Informe a descrição do produto")]
         [DataType(DataType.MultilineText)]
         public string Descricao { get; set; }
+
+        [Display(Name="Preço produto:")]
+        [Required(ErrorMessage="Informe o preço do produto")]
+        [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
+
+        [Display(Name="Categoria:")]
+        [Required(ErrorMessage="Informe a categoria do produto")]
         public string Categoria { get; set; }
     }
 }
