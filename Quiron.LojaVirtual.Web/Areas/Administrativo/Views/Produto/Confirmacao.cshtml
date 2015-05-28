@@ -47,7 +47,6 @@
 
             // linha do grid
             var rowNumber = "#row-" + id;
-            alert(rowNumber);
 
             $.ajax({
                 url: url,
@@ -55,7 +54,7 @@
                 datatype: 'json',
                 data: { produtoId: id },
                 beforeSend: function () {
-                    var loading = "<span><em>Excluindo</em>&nbsp;<i class='glyphicon glyphicon-refresh icon-refresh-animate'></span>";
+                    var loading = "<span id='msgexclusao'><em>Excluindo</em>&nbsp;<i class='glyphicon glyphicon-refresh icon-refresh-animate'></span>";
                     $('#deleteModal .modal-header h4').after(loading);
                 },
                 success: function () {
@@ -67,6 +66,7 @@
                 complete: function (data) {
                     $("#mensagem").show();
                     $("#mensagem").html(data.responseText);
+                    $("#msgexclusao").remove();
                 }
             });
         });
