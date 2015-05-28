@@ -12,6 +12,7 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
     public class EFDbContext: DbContext
     {
         public DbSet<Produto> Produto { get; set; }
+        public DbSet<Administrador> Administrador { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
