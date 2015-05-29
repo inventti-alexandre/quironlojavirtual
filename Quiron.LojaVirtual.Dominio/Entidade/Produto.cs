@@ -26,5 +26,10 @@ namespace Quiron.LojaVirtual.Dominio.Entidade
         [Display(Name="Categoria:")]
         [Required(ErrorMessage="Informe a categoria do produto")]
         public string Categoria { get; set; }
+
+        [Display(Name="Imagem:")]
+        public byte[] Imagem { get; set; }
+
+        public string ImagemMimeType { get; set; }
     }
 }
