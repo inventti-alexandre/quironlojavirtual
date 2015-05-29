@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
+namespace Quiron.LojaVirtual.Web.Controllers
 {
     public class AutenticacaoController : Controller
     {
@@ -37,9 +37,9 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
                     else
                     {
                         FormsAuthentication.SetAuthCookie(admin.Login, false);
-                        if (Url.IsLocalUrl(returnUrl) 
-                            && returnUrl.Length > 1 
-                            && returnUrl.StartsWith("/") 
+                        if (Url.IsLocalUrl(returnUrl)
+                            && returnUrl.Length > 1
+                            && returnUrl.StartsWith("/")
                             && !returnUrl.StartsWith("//")
                             && !returnUrl.StartsWith("/\\"))
                         {
@@ -54,7 +54,7 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
             }
 
             ViewBag.ReturnUrl = returnUrl;
-            return View(administrador);
+            return View(new Administrador());
         }
     }
 }
