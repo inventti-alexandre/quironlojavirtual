@@ -58,6 +58,16 @@ namespace Quiron.LojaVirtual.Web
                     pagina = @"\d+"
                 });
 
+            // 5 - mapeamento da rota da imagem
+            routes.MapRoute(
+                name: "ObterImagem",
+                url: "Vitrine/ObterImagem/{produtoId}",
+                defaults: new {
+                    controller = "Vitrine",
+                    action = "ObterImagem",
+                    produtoId = UrlParameter.Optional
+                });
+
             // default MVC
             routes.MapRoute(null, "{controller}/{action}");
         }
