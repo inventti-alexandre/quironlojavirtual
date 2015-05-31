@@ -95,17 +95,5 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
 
             return Json(mensagem, JsonRequestBehavior.AllowGet);
         }
-
-        public FileContentResult ObterImagem(int produtoId)
-        {
-            _repositorio = new ProdutoRespositorio();
-            var produto = _repositorio.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
-            if (produto != null)
-            {
-                return File(produto.Imagem, produto.ImagemMimeType);
-            }
-
-            return null;
-        }
     }
 }
