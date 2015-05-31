@@ -11,7 +11,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
     {
         private ProdutoRespositorio _repositorio;
 
-        public RedirectToRouteResult Adicionar(int produtoId, string returnUrl)
+        public RedirectToRouteResult Adicionar(Carrinho carrinho, int produtoId, string returnUrl)
         {
             _repositorio = new ProdutoRespositorio();
 
