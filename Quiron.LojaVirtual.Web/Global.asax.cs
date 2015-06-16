@@ -1,7 +1,9 @@
 ﻿using Quiron.LojaVirtual.Dominio.Entidade;
+using Quiron.LojaVirtual.Dominio.Repositorio;
 using Quiron.LojaVirtual.Web.Infraestrutura;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +15,8 @@ namespace Quiron.LojaVirtual.Web
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<EFDbContext>(null);
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
