@@ -9,8 +9,8 @@
         </div>
     }
 
-    <h3><strong>@Model.Nome</strong></h3>
-    <h3><span class="pull-right label label-primary">@Model.Preco.ToString("c")</span></h3>
+    <h3><span class="pull-left"><strong>@Model.Nome</strong></span></h3>
+    <h3><span class="pull-right label label-primary">@Model.Preco.ToString("c")</span><br /></h3>
 
     @using (Html.BeginForm("Adicionar", "Carrinho"))
     {          
